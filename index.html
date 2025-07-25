@@ -29,6 +29,7 @@
             border-radius: 5px;
             background-color: #1a1a1a;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            white-space: pre-line;
         }
         
         #narrative-text {
@@ -133,9 +134,15 @@
 
             const savedProgress = localStorage.getItem(SAVE_KEY);
             if (savedProgress) {
-                const savedSection = findSectionByTitle(savedProgress);
-                if (savedSection) {
-                    currentSection = savedSection;
+                const [sectionIndex, subsectionIndex] = JSON.parse(savedProgress);
+                if (subsectionIndex !== null) {
+                    if (narrativeData[sectionIndex]?.subsections?.[subsectionIndex]) {
+                        currentSection = narrativeData[sectionIndex].subsections[subsectionIndex];
+                        updateUI();
+                        return;
+                    }
+                } else if (narrativeData[sectionIndex]) {
+                    currentSection = narrativeData[sectionIndex];
                     updateUI();
                     return;
                 }
@@ -145,21 +152,22 @@
             updateUI();
         }
 
-        function findSectionByTitle(title) {
-            for (const section of narrativeData) {
-                if (section.title === title) return section;
-                if (section.subsections) {
-                    for (const subsection of section.subsections) {
-                        if (subsection.title === title) return subsection;
+        function saveProgress() {
+            if (!currentSection || !narrativeData) return;
+            
+            for (let i = 0; i < narrativeData.length; i++) {
+                if (narrativeData[i] === currentSection) {
+                    localStorage.setItem(SAVE_KEY, JSON.stringify([i, null]));
+                    return;
+                }
+                if (narrativeData[i].subsections) {
+                    for (let j = 0; j < narrativeData[i].subsections.length; j++) {
+                        if (narrativeData[i].subsections[j] === currentSection) {
+                            localStorage.setItem(SAVE_KEY, JSON.stringify([i, j]));
+                            return;
+                        }
                     }
                 }
-            }
-            return null;
-        }
-
-        function saveProgress() {
-            if (currentSection && currentSection.title) {
-                localStorage.setItem(SAVE_KEY, currentSection.title);
             }
         }
 
@@ -204,15 +212,22 @@
         }
 
         function selectOption(option) {
-            if (!option.targetSection) return;
+            if (!option.targetSection || !narrativeData) return;
 
             const targetParts = option.targetSection.split('-');
-            if (targetParts.length !== 2 || targetParts[0] !== 'section') return;
+            if (targetParts.length < 2 || targetParts[0] !== 'section') return;
 
             const sectionIndex = parseInt(targetParts[1]);
             if (isNaN(sectionIndex) || sectionIndex < 0 || sectionIndex >= narrativeData.length) return;
 
-            currentSection = narrativeData[sectionIndex];
+            if (targetParts.length === 2) {
+                currentSection = narrativeData[sectionIndex];
+            } else if (targetParts.length === 4 && targetParts[2] === 'subsection') {
+                const subsectionIndex = parseInt(targetParts[3]);
+                if (isNaN(subsectionIndex) || !narrativeData[sectionIndex]?.subsections?.[subsectionIndex]) return;
+                currentSection = narrativeData[sectionIndex].subsections[subsectionIndex];
+            }
+
             updateUI();
         }
 
