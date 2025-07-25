@@ -1,32 +1,48 @@
 [
   {
-    "title": "aaa",
-    "text": "asdasd",
+    "title": "Seção 1",
+    "text": "Você acorda em meio a uma floresta densa. O cheiro de queimado ainda paira no ar. A guerra chegou até aqui. Ao longe, colunas de fumaça sobem lentamente. Há algo se movendo entre as árvores...\n",
     "options": [
       {
-        "text": "asdasd",
-        "targetSection": "section-1"
+        "text": "Esconder-se entre as raízes da árvore mais próxima",
+        "targetSection": "section-0-subsection-0"
       },
       {
-        "text": "asdasdasdasdasdasdasd",
+        "text": "Investigar as colunas de fumaça ao longe",
         "targetSection": ""
       },
       {
-        "text": "asdasd",
+        "text": "observar o que se move entre as árvores",
         "targetSection": ""
       }
     ],
-    "subsections": []
+    "subsections": [
+      {
+        "title": "Subseção",
+        "text": "Você se arrasta para dentro de uma cavidade escura, entre troncos caídos e raízes expostas. O som de passos se aproxima. Algo passa perto, mas não entra. Você espera. O silêncio volta. ",
+        "options": []
+      },
+      {
+        "title": "Subseção 2",
+        "text": "Você se levanta e caminha na direção da fumaça. O chão está coberto de cinzas. Encontra os restos de uma pequena vila incendiada. Um corpo jaz no chão, com uma poção intacta na mão.",
+        "options": [
+          {
+            "text": "Vasculhar o corpo",
+            "targetSection": "section-1"
+          }
+        ]
+      },
+      {
+        "title": "Subseção 3",
+        "text": "Você prende a respiração. Entre a névoa, uma figura se arrasta. Não é humana. Tem membros alongados, pele rachada, e arrasta uma garra no chão. Ela cheira o ar… e se afasta.",
+        "options": []
+      }
+    ]
   },
   {
     "title": "Seção 2",
-    "text": "aii",
-    "options": [
-      {
-        "text": "asdasdasdasd",
-        "targetSection": ""
-      }
-    ],
+    "text": "Você coletou: \n\n 1 poção branca\n\n 1 mapa para Arescal",
+    "options": [],
     "subsections": []
   }
 ]
