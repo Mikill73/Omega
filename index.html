@@ -117,12 +117,26 @@
 
         async function loadNarrative() {
             try {
-                const response = await fetch('https://raw.githubusercontent.com/Mikill73/Omega/main/Narrativa');
+                let response = await fetch('Narrativa');
+
+                if (!response.ok) {
+                    response = await fetch(`https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Mikill73/Omega/main/Narrativa`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
+                }
+                
+                if (!response.ok) {
+                    response = await fetch('https://raw.githubusercontent.com/Mikill73/Omega/main/Narrativa');
+                }
+
                 const text = await response.text();
                 narrativeData = JSON.parse(text);
                 loadGame();
-            } catch {
+            } catch (error) {
                 document.getElementById('narrative-text').textContent = 'Erro ao carregar a narrativa.';
+                console.error('Erro detalhado:', error);
             }
         }
 
