@@ -12,7 +12,7 @@
         "targetSection": "section-0-subsection-1"
       },
       {
-        "text": "Observar o que se move entre as árvores",
+        "text": "observar o que se move entre as árvores",
         "targetSection": "section-0-subsection-2"
       }
     ],
@@ -20,11 +20,16 @@
       {
         "title": "Subseção",
         "text": "Você se arrasta para dentro de uma cavidade escura, entre troncos caídos e raízes expostas. O som de passos se aproxima. Algo passa perto, mas não entra. Você espera. O silêncio volta. ",
-        "options": []
+        "options": [
+          {
+            "text": "Sair de se esconderijo",
+            "targetSection": "section-2"
+          }
+        ]
       },
       {
         "title": "Subseção 2",
-        "text": "Você se levanta e caminha na direção da fumaça. O chão está coberto de cinzas. Encontra os restos de uma pequena vila incendiada. Um corpo jaz no chão, com uma poção intacta na mão.",
+        "text": "Você caminha na direção da fumaça. O chão está coberto de cinzas. Encontra os restos de uma pequena vila incendiada. Um corpo jaz no chão, com uma poção intacta na mão.",
         "options": [
           {
             "text": "Vasculhar o corpo",
@@ -35,14 +40,99 @@
       {
         "title": "Subseção 3",
         "text": "Você prende a respiração. Entre a névoa, uma figura se arrasta. Não é humana. Tem membros alongados, pele rachada, e arrasta uma garra no chão. Ela cheira o ar… e se afasta.",
-        "options": []
+        "options": [
+          {
+            "text": "Continuar se rumo e ir investigar as colunas de fumaça ao longe",
+            "targetSection": "section-0-subsection-2"
+          }
+        ]
       }
     ]
   },
   {
     "title": "Seção 2",
     "text": "Você coletou: \n\n 1 poção branca\n\n 1 mapa para Arescal",
-    "options": [],
+    "options": [
+      {
+        "text": "Seguir explorando o local",
+        "targetSection": "section-2"
+      }
+    ],
     "subsections": []
+  },
+  {
+    "title": "encontro com shito",
+    "text": "Você vê aproximando uma figura estranha. Uma mulher com próteses mecânicas e um olhar sereno. ",
+    "options": [
+      {
+        "text": "Falar com ela",
+        "targetSection": ""
+      },
+      {
+        "text": "Correr dela",
+        "targetSection": "section-2-subsection-0"
+      }
+    ],
+    "subsections": [
+      {
+        "title": "armadilha de urso",
+        "text": "Enquanto corria você pisa em uma armadilha de urso e se ferre gravemente. Você sente o aço frio perfurando sua perna e seu sangue quente escorre como uma fonte.\n ",
+        "options": [
+          {
+            "text": "Retirar sua perna da armadilha",
+            "targetSection": ""
+          }
+        ]
+      },
+      {
+        "title": "contato com shito",
+        "text": "Você vai até a mulher , você  olha seu rosto e percebe que ele é diferente de você, tem olhos puxados e usa um kimono roxo e vermelho bem gasto.",
+        "options": [
+          {
+            "text": "Conversar com ela.",
+            "targetSection": "section-3"
+          },
+          {
+            "text": "Ataque-a!",
+            "targetSection": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "conversar com shito",
+    "text": "Mesmo sem ter certeza se pode confiar nela você tenta iniciar uma conversa. ",
+    "options": [
+      {
+        "text": "O que aconteceu nessa floresta? tem uma muita fumaça aqui perto. ",
+        "targetSection": "section-3-subsection-0"
+      },
+      {
+        "text": "Eu não consigo me lembrar de nada, onde estou ?",
+        "targetSection": "section-3-subsection-1"
+      },
+      {
+        "text": "Qual seu nome ?",
+        "targetSection": "section-3-subsection-2"
+      }
+    ],
+    "subsections": [
+      {
+        "title": "pergunta 1",
+        "text": "\"Um ataque do Império, eles estão atacando as vilas próximas. Aqui não é seguro, então acho melhor me seguir.",
+        "options": []
+      },
+      {
+        "title": "pergunta 2",
+        "text": "\"Está é a floresta de Zorun.\"",
+        "options": []
+      },
+      {
+        "title": "pergunta 3",
+        "text": "\"Meu nome é Shīto Shukufuku mas pode me chamar só de Shīto.",
+        "options": []
+      }
+    ]
   }
 ]
