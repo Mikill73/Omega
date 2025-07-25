@@ -112,25 +112,55 @@
     <script>
         let currentSection = null;
         let narrativeData = null;
+        const SAVE_KEY = 'omega_game_progress';
 
         async function loadNarrative() {
             try {
                 const response = await fetch('https://raw.githubusercontent.com/Mikill73/Omega/main/Narrativa');
                 const text = await response.text();
                 narrativeData = JSON.parse(text);
-                startGame();
+                loadGame();
             } catch {
                 document.getElementById('narrative-text').textContent = 'Erro ao carregar a narrativa.';
             }
         }
 
-        function startGame() {
+        function loadGame() {
             if (!narrativeData || !Array.isArray(narrativeData) || narrativeData.length === 0) {
                 document.getElementById('narrative-text').textContent = 'Nenhuma narrativa encontrada.';
                 return;
             }
+
+            const savedProgress = localStorage.getItem(SAVE_KEY);
+            if (savedProgress) {
+                const savedSection = findSectionByTitle(savedProgress);
+                if (savedSection) {
+                    currentSection = savedSection;
+                    updateUI();
+                    return;
+                }
+            }
+            
             currentSection = narrativeData[0];
             updateUI();
+        }
+
+        function findSectionByTitle(title) {
+            for (const section of narrativeData) {
+                if (section.title === title) return section;
+                if (section.subsections) {
+                    for (const subsection of section.subsections) {
+                        if (subsection.title === title) return subsection;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function saveProgress() {
+            if (currentSection && currentSection.title) {
+                localStorage.setItem(SAVE_KEY, currentSection.title);
+            }
         }
 
         function updateUI() {
@@ -145,7 +175,10 @@
                 const endBtn = document.createElement('button');
                 endBtn.className = 'option-btn';
                 endBtn.textContent = 'Fim da Jornada';
-                endBtn.onclick = () => startGame();
+                endBtn.onclick = () => {
+                    localStorage.removeItem(SAVE_KEY);
+                    loadGame();
+                };
                 optionsContainer.appendChild(endBtn);
                 return;
             }
@@ -166,6 +199,8 @@
                 
                 optionsContainer.appendChild(btn);
             });
+
+            saveProgress();
         }
 
         function selectOption(option) {
