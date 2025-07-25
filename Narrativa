@@ -65,8 +65,8 @@
     "text": "Você vê aproximando uma figura estranha. Uma mulher com próteses mecânicas e um olhar sereno. ",
     "options": [
       {
-        "text": "Falar com ela",
-        "targetSection": ""
+        "text": "Também se aproximar",
+        "targetSection": "section-3"
       },
       {
         "text": "Correr dela",
